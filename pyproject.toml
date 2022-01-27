@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "pt1-43-21-14"
+version = "0.1.0"
+description = "A simple note-taking app."
+authors = ["Danila Kritsky <danilakritsky@gmail.com>"]
+license = "MIT License"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.70.1"
+uvicorn = "^0.17.0"
+motor = "^2.5.1"
+dnspython = "^2.2.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+requests = "^2.27.1"
+flake8 = "^4.0.1"
+black = "^21.12b0"
+pylint = "^2.12.2"
+mypy = "^0.931"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

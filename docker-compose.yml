@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  dev:
+    build: .
+    # uvicorn should either use the absolute import for the app
+    # or be run from the same directory the main app file is at
+    # or use --app-dir to specify the directory directly
+    secrets:
+      - mongodb_uri
+      - mongodb_database
+      - mongodb_collection
+    volumes:
+    # simple bind mount to update the app when host files change
+      - ./:/home/nonroot/pt1-43-21-14/
+    ports:
+      - 8000:8000
+    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
