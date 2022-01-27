@@ -16,3 +16,19 @@ services:
     ports:
       - 8000:8000
     command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+  db:
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=test  # database on which the docker-entrypoint-initdb.d will be run
+    ports:
+      - 27017:27017
+    volumes:
+      - ./docker-entrypoint-initdb.d/mongo-init.js/:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    command: [--auth]  # enforce authentication
+secrets:
+  mongodb_uri:
+    file: ./secrets/mongodb_uri
+  mongodb_database:
+    file: ./secrets/mongodb_database
+  mongodb_collection:
+    file: ./secrets/mongodb_collection
